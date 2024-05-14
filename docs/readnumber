@@ -1,0 +1,41 @@
+#include <stdio.h>
+#pragma warning(disable:4996)
+#define MAX_NUMER 100
+#define RANGE 10
+void readNumbers(int number[], int n) {
+	printf("Enter %d numbers(0-9)", n);
+	for (int i = 0; i < n; i++) {
+		scanf("%d", &number[i]);
+		if (number[i] < 0||number[i] > 9) {
+			printf("error");
+		}
+	}
+}
+
+void calculateFrequency(int number[], int n, int frequency[]) {
+	for (int i = 0; i < n; i++) {
+		frequency[number[i]]++;
+	}
+}
+
+void printFrequency(int frequency[], int range) {
+	for (int i = 0; i < range; i++) {
+		printf("number %d: %d times\n", i, frequency[i]);
+	}
+}
+int main() {
+	int N;
+	printf("enter the number of elements(up to %d)", MAX_NUMER);
+	scanf("%d", &N);
+	
+	if (N < 1 || N > MAX_NUMER) {
+		printf("error");
+		return 1;
+	}
+	int number[N];
+	readNumbers(number, N);
+	int frequency[RANGE] = { 0 };
+	calculateFrequency(number, N, frequency);
+	printFrequency(frequency, RANGE);
+	return 0;
+}
